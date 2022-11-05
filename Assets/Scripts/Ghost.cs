@@ -13,6 +13,9 @@ public class Ghost : Movable
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameManager.actualState == "Play")
+        {
+            Move();
+        }
     }
 }

@@ -4,43 +4,82 @@ using UnityEngine;
 
 public class PlayerControler : MonoBehaviour
 {
+    GameManager gameManager;
+
 
     public Transform[] Carriles;
-    public int actualPosition;   
+    public int actualPosition;
 
+    public float moveSpeed;
+
+    public string actualState;
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.AddToList(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
-        actualPosition = 0;
+        moveSpeed = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
+
+        PlayerStates(actualState);
+        
+    }
+
+    public void SetState(string state)
+    {
+        actualState = state;
+    }
+
+    void PlayerStates(string state)
+    {
+        switch (state)
+        {
+            case "Play" :
+                PlayerMove();
+                break;
+            case "Dead":
+                gameManager.SetGameState("Dead");
+                break;
+
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (gameManager.actualState == "Play")
+        {
+            if (collision.gameObject.tag == "Obstacle")
+            {
+                gameManager.SetGameState("Dead");
+            }
+        }
+        
     }
 
     void PlayerMove()
     {
-        if (Input.GetKeyDown(KeyCode.A) && ((actualPosition <= Carriles.Length) && (actualPosition > 0)))
+        if (Input.GetKey(KeyCode.A))
         {
-            actualPosition -= 1;
+            transform.position = Vector3.MoveTowards(transform.position, Carriles[0].position, moveSpeed * Time.deltaTime);
         }
-        else
+       
+
+        if (Input.GetKey(KeyCode.D))
         {
-            actualPosition = actualPosition + 0;
+            transform.position = Vector3.MoveTowards(transform.position, Carriles[1].position, moveSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && ((actualPosition >= 0) && (actualPosition < Carriles.Length-1)))
-        {
-            actualPosition += 1;
-        }
-        else
-        {
-            actualPosition = actualPosition + 0;
-        }
 
-        transform.position = Carriles[actualPosition].transform.position;   
+
+
+        //transform.position = Carriles[actualPosition].transform.position;
     }
 
 }
