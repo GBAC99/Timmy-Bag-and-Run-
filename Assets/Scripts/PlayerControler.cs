@@ -15,7 +15,6 @@ public class PlayerControler : MonoBehaviour
     public float staminaRecoverSpeed;
     float staminaCurrentTime;
 
-
     public Transform[] Carriles;
     Vector3 initPosition;
 
@@ -75,6 +74,12 @@ public class PlayerControler : MonoBehaviour
             }
         }
 
+        if (other.gameObject.tag == "PickUp")
+        {
+            PickUp pickUp = gameObject.GetComponent<PickUp>();
+            pickUp.TakePickUp();
+        }
+
 
     }
 
@@ -130,6 +135,11 @@ public class PlayerControler : MonoBehaviour
             meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
             gameObject.GetComponent<BoxCollider>().isTrigger = false;
         }
+    }
+
+    public void FillStamina()
+    {
+
     }
 
     public void Restart()

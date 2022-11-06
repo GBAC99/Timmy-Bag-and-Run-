@@ -39,7 +39,10 @@ public class Movable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (gameManager.actualState == "Play")
+        {
+            Move();
+        }
     }
 
     public void Move() //Movimiento del objeto
