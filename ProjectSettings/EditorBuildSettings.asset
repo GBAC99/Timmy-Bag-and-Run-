@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/DevelopmentScene.unity
-    guid: 756cb93ab4293eb4d9b9b5b5d46a31b1
+    path: Assets/Scenes/DesignScene.unity
+    guid: c28cb88213e55214a8d2c6a29ebe92d6
   - enabled: 1
-    path: Assets/Scenes/FinalScene.unity
-    guid: f35316370e8ac4e439a6ec5c0ae31585
+    path: Assets/Scenes/Level2.unity
+    guid: c532027c98e0d884e970bccc1d042242
   m_configObjects: {}
