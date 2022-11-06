@@ -137,9 +137,9 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    public void FillStamina()
+    public void FillStamina(float fill)
     {
-
+        staminaCurrentTime += fill;
     }
 
     public void Restart()

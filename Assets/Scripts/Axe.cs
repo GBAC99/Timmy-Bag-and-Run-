@@ -14,7 +14,6 @@ public class Axe : Movable
     void Start()
     {
         axeAnim = gameObject.GetComponent<Animator>();
-        swingSpeed = 1;
         animSpeed = axeAnim.GetParameter(0).defaultFloat;
     }
 

@@ -51,7 +51,7 @@ public class PickUp : Movable
 
     void TakeStamina()
     {
-
+        gameManager.player.FillStamina(staminaPoints);
     }
     void TakeInmune()
     {
