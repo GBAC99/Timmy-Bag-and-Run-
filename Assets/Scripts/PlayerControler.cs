@@ -99,13 +99,26 @@ public class PlayerControler : MonoBehaviour
     {
         if (gameManager.actualState == "Play")
         {
-            if (collision.gameObject.tag == "Obstacle")
+            if (!ds)
+            {
+                if (collision.gameObject.tag == "Ghost" 
+                    || collision.gameObject.tag == "Chain" 
+                    || collision.gameObject.tag == "Axe") gameManager.SetGameState("Dead");
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (ds)
+        {
+            if (other.gameObject.tag == "Ghost")
             {
                 gameManager.SetGameState("Dead");
             }
         }
-
     }
+
 
     void PlayerMove()
     {

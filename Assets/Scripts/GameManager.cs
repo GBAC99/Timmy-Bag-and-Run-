@@ -77,6 +77,16 @@ public class GameManager : MonoBehaviour
             SetGameState("Dead");
         }
 
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+
+        }
+        else if (Input.GetKeyUp(KeyCode.P))
+        {
+
+        }
+
     }
 
 

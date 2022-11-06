@@ -11,7 +11,12 @@ public class Movable : MonoBehaviour
     public float speed;
     Vector3 initialPosition;
     GameObject _thisGO;
+    public MeshRenderer[] meshRenderer;
 
+    public Movable()
+    {
+        speed = 1;
+    }
 
     private void Awake()
     {
@@ -19,6 +24,10 @@ public class Movable : MonoBehaviour
         gameManager.AddToList(gameObject);
         initialPosition = this.transform.position;
 
+        foreach (MeshRenderer m in meshRenderer)
+        {
+            m.enabled = false;
+        }
     }
 
     // Start is called before the first frame update
@@ -30,7 +39,7 @@ public class Movable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Move() //Movimiento del objeto
@@ -41,6 +50,20 @@ public class Movable : MonoBehaviour
     public void Restart()
     {
         transform.position = initialPosition;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Renderer")
+        {
+            foreach (MeshRenderer m in meshRenderer)
+            {
+                if (!m.enabled)
+                {
+                    m.enabled = true;
+                }
+            }
+        }
     }
 
 }

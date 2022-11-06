@@ -11,6 +11,7 @@ TagManager:
   - PotiR
   - PotiG
   - Obstacle
+  - Renderer
   layers:
   - Default
   - TransparentFX
