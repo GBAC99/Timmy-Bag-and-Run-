@@ -7,12 +7,10 @@ public class GameManager : MonoBehaviour
     //Lista de todos los objetos del juego
     List<GameObject> sceneObjects = new List<GameObject>();
 
-    //Lista de Objetos Spawneables
-    public GameObject[] spawnableObjects;
-
     //Referencia al Canvas
     public GameObject mainCanvasUI;
     public GameObject mainDeadScreenUI;
+    
 
     //Referencia directa al Player
     public PlayerControler player;
@@ -56,18 +54,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < spawnableObjects.Length; i++)
-        {
-            AddToList(spawnableObjects[i]);
-        }
-
-        player.SetState("Play");
 
         actualGameSpeed = startGameSpeed;
 
         fastForward = false;
 
-
+        mainCanvasUI.SetActive(true);
     }
 
     // Update is called once per frame
@@ -109,8 +101,6 @@ public class GameManager : MonoBehaviour
         {
             case "Play":
                 actualGameSpeed = startGameSpeed;
-                player.SetState("Play");
-
                 break;
             case "Restart":
                 foreach (GameObject o in sceneObjects)
@@ -120,19 +110,18 @@ public class GameManager : MonoBehaviour
                         o.GetComponent<Movable>().Restart();
                     }
                 }
-
                 player.Restart();
-
                 mainDeadScreenUI.SetActive(false);
+                mainCanvasUI.SetActive(true);
                 Time.timeScale = 1;
+                actualGameSpeed = startGameSpeed;
                 SetGameState("Play");
-
                 break;
             case "Dead":
                 actualGameSpeed = 0; //Pause all objects
+                mainCanvasUI.SetActive(false);
                 mainDeadScreenUI.SetActive(true);
                 Time.timeScale = 0;
-                //player.SetState("Dead");
                 break;
         }
     }
@@ -162,17 +151,4 @@ public class GameManager : MonoBehaviour
 
         return rObj;
     }
-
-    public void DestroyObjectFromList(GameObject gO)
-    {
-        foreach (GameObject item in sceneObjects)
-        {
-            if (item == gO)
-            {
-                Destroy(item);
-                RemoveFromList(item);
-            }
-        }
-    }
-
 }
