@@ -49,6 +49,14 @@ public class Movable : MonoBehaviour
 
     public void Restart()
     {
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+        foreach (MeshRenderer m in meshRenderer)
+        {
+            m.enabled = false;
+        }
         transform.position = initialPosition;
     }
 
@@ -66,13 +74,8 @@ public class Movable : MonoBehaviour
         }
         if (other.gameObject.tag == "Destroyer")
         {
-            gameManager.DestroyObjectFromList(gameObject);
+            gameObject.SetActive(false);
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
     }
 
 }

@@ -143,6 +143,8 @@ public class PlayerControler : MonoBehaviour
 
     public void Restart()
     {
+        gameManager.RemoveFromList(gameObject);
+        gameManager.AddToList(gameObject);
         staminaCurrentTime = staminaTime;
         transform.position = initPosition;
     }
