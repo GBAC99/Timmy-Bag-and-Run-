@@ -9775,7 +9775,7 @@ MonoBehaviour:
   meshRenderer:
   - {fileID: 3067512408611263489}
   - {fileID: 2538536957858759521}
-  swingSpeed: 1
+  swingSpeed: 3
 --- !u!4 &3067512409975095467
 Transform:
   m_ObjectHideFlags: 0
