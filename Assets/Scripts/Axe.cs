@@ -25,7 +25,7 @@ public class Axe : Movable
             Move();
         }
 
-        axeAnim.SetFloat("AnimSpeed",swingSpeed);
+        axeAnim.SetFloat("AnimSpeed",swingSpeed*gameManager.actualGameSpeed);
 
        // animSpeed = animSpeed * swingSpeed;
     }

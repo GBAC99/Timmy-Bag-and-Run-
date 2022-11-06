@@ -184,12 +184,13 @@ public class PlayerControler : MonoBehaviour
                 if (staminaCurrentTime > 0)
                 {
                     staminaCurrentTime -= staminaSpend * Time.deltaTime;
+                    ds = true;
                 }
                 else
                 {
                     staminaCurrentTime = 0;
                 }
-                ds = true;
+                
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {
