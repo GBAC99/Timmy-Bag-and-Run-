@@ -15,7 +15,7 @@ public class Axe : Movable
     {
         axeAnim = gameObject.GetComponent<Animator>();
         swingSpeed = 1;
-        animSpeed = axeAnim.GetCurrentAnimatorStateInfo(0).speed;
+        animSpeed = axeAnim.GetParameter(0).defaultFloat;
     }
 
     // Update is called once per frame
@@ -25,6 +25,9 @@ public class Axe : Movable
         {
             Move();
         }
-        animSpeed = animSpeed * swingSpeed;
+
+        axeAnim.SetFloat("AnimSpeed",swingSpeed);
+
+       // animSpeed = animSpeed * swingSpeed;
     }
 }
