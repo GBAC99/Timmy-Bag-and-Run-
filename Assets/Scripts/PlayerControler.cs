@@ -15,6 +15,13 @@ public class PlayerControler : MonoBehaviour
     public float staminaRecoverSpeed;
     float staminaCurrentTime;
 
+    public Image staminaBarExtra;
+    public float staminaTimeExtra;
+    public float staminaSpendExtra;
+    public float staminaRecoverSpeedExtra;
+    float staminaCurrentTimeExtra;
+    public bool extraStamina;
+
     public Transform[] Carriles;
     Vector3 initPosition;
 
@@ -23,6 +30,10 @@ public class PlayerControler : MonoBehaviour
     public string actualState;
 
     public bool ds;
+    public bool invencible;
+    public float invencibleTime;
+    float invencibleCurrentTime;
+    public float invencibleTimeSpend;
 
     private void Awake()
     {
@@ -34,8 +45,12 @@ public class PlayerControler : MonoBehaviour
     void Start()
     {
         ds = false;
+        extraStamina = false;
         moveSpeed = 5;
         staminaCurrentTime = staminaTime;
+        staminaTimeExtra = 0;
+        staminaCurrentTimeExtra = staminaTimeExtra;
+        invencibleCurrentTime = 0;
     }
 
     // Update is called once per frame
@@ -47,9 +62,34 @@ public class PlayerControler : MonoBehaviour
             PlayerMove();
         }
 
-        if (staminaCurrentTime > staminaTime) staminaCurrentTime = staminaTime;
+        // if (staminaCurrentTime > staminaTime) staminaCurrentTime = staminaTime;
+        if (extraStamina)
+        {
+            staminaBarExtra.fillAmount = staminaCurrentTimeExtra / staminaTimeExtra;
+        }
+        else
+        {
+            staminaBarExtra.fillAmount = 0;
+            staminaBar.fillAmount = staminaCurrentTime / staminaTime;//deberia hacerlo el gamemanager   
+        }
 
-        staminaBar.fillAmount = staminaCurrentTime / staminaTime;//deberia hacerlo el gamemanager   
+        if (invencible)
+        {
+            meshRenderer.GetComponent<Renderer>().material.color = Color.red;
+
+            invencibleCurrentTime += invencibleTimeSpend * Time.deltaTime;
+            Debug.Log(invencibleCurrentTime);
+            if (invencibleCurrentTime >= invencibleTime)
+            {
+                invencibleCurrentTime = 0;
+                meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+                invencible = false;
+
+            }
+
+        }
+        
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -61,30 +101,35 @@ public class PlayerControler : MonoBehaviour
     {
         if (gameManager.actualState == "Play" && !gameManager.fastForward)
         {
-            if (ds)
+            if (!invencible)
             {
-                if (other.gameObject.tag == "Ghost")
+                if (ds)
                 {
-                    gameManager.SetGameState("Dead");
+                    if (other.gameObject.tag == "Ghost")
+                    {
+                        gameManager.SetGameState("Dead");
+                    }
                 }
-            }
-            else
-            {
-                if (other.gameObject.tag == "Ghost"
-                    || other.gameObject.tag == "Chain"
-                    || other.gameObject.tag == "Axe") gameManager.SetGameState("Dead");
+                else
+                {
+                    if (other.gameObject.tag == "Ghost"
+                        || other.gameObject.tag == "Chain"
+                        || other.gameObject.tag == "Axe") gameManager.SetGameState("Dead");
+                }
             }
         }
 
         if (other.gameObject.tag == "PickUp")
         {
-            PickUp pickUp = gameObject.GetComponent<PickUp>();
+            PickUp pickUp = other.gameObject.GetComponent<PickUp>();
             pickUp.TakePickUp();
         }
-
-
     }
 
+    public void SetPlayerInvencible()
+    {
+        invencible = true;
+    }
 
     void PlayerMove()
     {
@@ -101,47 +146,62 @@ public class PlayerControler : MonoBehaviour
     }
     void PlayerDissapear()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (extraStamina)
         {
-            //Stamina Managment
-            if (staminaCurrentTime > 0)
+            if (Input.GetKey(KeyCode.Space))
             {
-                ds = true;
+                gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                meshRenderer.GetComponent<Renderer>().material.color = Color.white;
+                staminaCurrentTimeExtra -= staminaSpendExtra * Time.deltaTime;
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+            }
+
+            if (staminaCurrentTimeExtra <= 0)
+            {
+                extraStamina = false;
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else
         {
-
-            //Stamina Managment
-            if (staminaCurrentTime < staminaTime)
+            if (Input.GetKey(KeyCode.Space))
+            {
+                gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                meshRenderer.GetComponent<Renderer>().material.color = Color.white;
+                staminaCurrentTime -= staminaSpend * Time.deltaTime;
+                ds = true;
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
             {
                 ds = false;
             }
+            else if (!ds && staminaCurrentTime < staminaTime)
+            {
+                gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+                staminaCurrentTime += staminaRecoverSpeed * Time.deltaTime;
+            }
         }
 
-        if (ds && staminaCurrentTime > 0)
-        {
-            gameObject.GetComponent<BoxCollider>().isTrigger = true;
-            meshRenderer.GetComponent<Renderer>().material.color = Color.white;
-            staminaCurrentTime -= staminaSpend * Time.deltaTime;
-        }
-        else if (ds && staminaCurrentTime <= 0)
-        {
-            meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
-            staminaCurrentTime = 0;
-            ds = false;
-        }
-        else if (!ds && staminaCurrentTime < staminaTime)
-        {
-            staminaCurrentTime += staminaRecoverSpeed * Time.deltaTime;
-            meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
-            gameObject.GetComponent<BoxCollider>().isTrigger = false;
-        }
     }
 
     public void FillStamina(float fill)
     {
-        staminaCurrentTime += fill;
+        if (staminaCurrentTime < staminaTime)
+        {
+            staminaCurrentTime += fill;
+        }
+        else if (staminaCurrentTime >= staminaTime)
+        {
+            staminaTimeExtra = fill;
+            staminaCurrentTimeExtra = staminaTimeExtra;
+            extraStamina = true;
+        }
+
     }
 
     public void Restart()

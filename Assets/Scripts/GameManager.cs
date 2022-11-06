@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     public string actualState;
 
     public bool fastForward;
+    public bool slowDown;
+    public float slowTime;
+    public float slowCurrentTime;
+    public float slowTimeSpend;
 
     private static GameManager _instance;
 
@@ -60,6 +64,9 @@ public class GameManager : MonoBehaviour
         fastForward = false;
 
         mainCanvasUI.SetActive(true);
+
+        slowCurrentTime = 0;
+
     }
 
     // Update is called once per frame
@@ -86,6 +93,9 @@ public class GameManager : MonoBehaviour
             actualGameSpeed = startGameSpeed;
         }
 
+        
+
+
     }
 
 
@@ -99,7 +109,24 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case "Play":
-                actualGameSpeed = startGameSpeed;
+              
+                if (slowDown)
+                {
+
+                    slowCurrentTime += slowTimeSpend * Time.deltaTime;
+                    if (slowCurrentTime >= slowTime)
+                    {
+                        slowCurrentTime = 0;
+                        slowTime = 0;
+                        actualGameSpeed = startGameSpeed;
+                        slowDown = false;
+
+                    }
+                }
+                else
+                {
+                    actualGameSpeed = startGameSpeed;
+                }
                 break;
             case "Restart":
                 foreach (GameObject o in sceneObjects)
@@ -125,6 +152,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SlowGame(float _slowTime, float slowSpeed)
+    {
+        slowDown = true;
+        slowTime = _slowTime;
+        actualGameSpeed = slowSpeed;
+    }
 
     public void AddToList(GameObject g)
     {

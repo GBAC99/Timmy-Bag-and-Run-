@@ -8,7 +8,7 @@ public class PickUp : Movable
     {
         STAMINA,
         INMUNE,
-        STOP
+        SLOW
 
 
     }
@@ -20,8 +20,8 @@ public class PickUp : Movable
         
     }
     public float staminaPoints;
-    public float inmuneTime;
-    public float stopTime;
+    public float slowTime;
+    public float slowGameSpeed;
     public PotionType pType;
 
     // Update is called once per frame
@@ -38,15 +38,19 @@ public class PickUp : Movable
         switch (pType)
         {
             case PotionType.STAMINA:
-
+                TakeStamina();
                 break;
             case PotionType.INMUNE:
+                TakeInmune();
                 break;
-            case PotionType.STOP:
+            case PotionType.SLOW:
+                TakeSlow();
                 break;
             default:
                 break;
         }
+        gameObject.SetActive(false);
+
     }
 
     void TakeStamina()
@@ -55,11 +59,11 @@ public class PickUp : Movable
     }
     void TakeInmune()
     {
-
+        gameManager.player.SetPlayerInvencible();
     }
-    void TakeStop()
+    void TakeSlow()
     {
-
+        gameManager.SlowGame(slowTime,slowGameSpeed);
     }
 
 }
