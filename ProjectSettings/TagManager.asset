@@ -12,6 +12,7 @@ TagManager:
   - PotiG
   - Obstacle
   - Renderer
+  - Destroyer
   layers:
   - Default
   - TransparentFX

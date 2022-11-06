@@ -62,13 +62,11 @@ public class PlayerControler : MonoBehaviour
                     //Stamina Managment
                     if (staminaCurrentTime > 0)
                     {
-                        meshRenderer.GetComponent<Renderer>().material.color = Color.white;
                         ds = true;
                     }
                 }
                 else if (Input.GetKeyUp(KeyCode.Space))
                 {
-                    meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
 
                     //Stamina Managment
                     if (staminaCurrentTime < staminaTime)
@@ -77,14 +75,22 @@ public class PlayerControler : MonoBehaviour
                     }
                 }
 
-                if (ds)
+                if (ds && staminaCurrentTime > 0)
                 {
                     gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                    meshRenderer.GetComponent<Renderer>().material.color = Color.white;
                     staminaCurrentTime -= staminaSpend * Time.deltaTime;
+                }
+                else if (ds && staminaCurrentTime <= 0)
+                {
+                    meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+                    staminaCurrentTime = 0;
+                    ds = false;
                 }
                 else if (!ds && staminaCurrentTime < staminaTime)
                 {
                     staminaCurrentTime += staminaRecoverSpeed * Time.deltaTime;
+                    meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
                     gameObject.GetComponent<BoxCollider>().isTrigger = false;
                 }
                 break;
@@ -97,26 +103,29 @@ public class PlayerControler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameManager.actualState == "Play" && !gameManager.fastForward)
-        {
-            if (!ds)
-            {
-                if (collision.gameObject.tag == "Ghost" 
-                    || collision.gameObject.tag == "Chain" 
-                    || collision.gameObject.tag == "Axe") gameManager.SetGameState("Dead");
-            }
-        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (ds)
+        if (gameManager.actualState == "Play" && !gameManager.fastForward)
         {
-            if (other.gameObject.tag == "Ghost")
+            if (ds)
             {
-                gameManager.SetGameState("Dead");
+                if (other.gameObject.tag == "Ghost")
+                {
+                    gameManager.SetGameState("Dead");
+                }
+            }
+            else
+            {
+                if (other.gameObject.tag == "Ghost"
+                    || other.gameObject.tag == "Chain"
+                    || other.gameObject.tag == "Axe") gameManager.SetGameState("Dead");
             }
         }
+        
+
     }
 
 

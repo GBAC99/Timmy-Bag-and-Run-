@@ -143,6 +143,11 @@ public class GameManager : MonoBehaviour
         sceneObjects.Add(g);
     }
 
+    public void RemoveFromList(GameObject g)
+    {
+        sceneObjects.Remove(g);
+    }
+
     public GameObject ReturnObject(string tagToFind)
     {
         GameObject rObj =  null;
@@ -156,6 +161,18 @@ public class GameManager : MonoBehaviour
         }
 
         return rObj;
+    }
+
+    public void DestroyObjectFromList(GameObject gO)
+    {
+        foreach (GameObject item in sceneObjects)
+        {
+            if (item == gO)
+            {
+                Destroy(item);
+                RemoveFromList(item);
+            }
+        }
     }
 
 }

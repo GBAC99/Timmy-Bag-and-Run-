@@ -64,6 +64,15 @@ public class Movable : MonoBehaviour
                 }
             }
         }
+        if (other.gameObject.tag == "Destroyer")
+        {
+            gameManager.DestroyObjectFromList(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
     }
 
 }
