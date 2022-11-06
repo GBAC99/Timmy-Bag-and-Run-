@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e594298577b21c74eb2b903cb6b85949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCanvasUI: {fileID: 1123783954}
+  mainCanvasUI: {fileID: 1026700076}
   mainDeadScreenUI: {fileID: 193078210}
   player: {fileID: 757401242}
   startGameSpeed: 1

@@ -42,68 +42,18 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerStates(actualState);
-        staminaBar.fillAmount = staminaCurrentTime / staminaTime;//deberia hacerlo el gamemanager   
-    }
 
-    public void SetState(string state)
-    {
-        actualState = state;
-    }
-
-    void PlayerStates(string state)
-    {
-        switch (state)
+        if (gameManager.actualState == "Play")
         {
-            case "Play":
-                PlayerMove();
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    //Stamina Managment
-                    if (staminaCurrentTime > 0)
-                    {
-                        ds = true;
-                    }
-                }
-                else if (Input.GetKeyUp(KeyCode.Space))
-                {
-
-                    //Stamina Managment
-                    if (staminaCurrentTime < staminaTime)
-                    {
-                        ds = false;
-                    }
-                }
-
-                if (ds && staminaCurrentTime > 0)
-                {
-                    gameObject.GetComponent<BoxCollider>().isTrigger = true;
-                    meshRenderer.GetComponent<Renderer>().material.color = Color.white;
-                    staminaCurrentTime -= staminaSpend * Time.deltaTime;
-                }
-                else if (ds && staminaCurrentTime <= 0)
-                {
-                    meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
-                    staminaCurrentTime = 0;
-                    ds = false;
-                }
-                else if (!ds && staminaCurrentTime < staminaTime)
-                {
-                    staminaCurrentTime += staminaRecoverSpeed * Time.deltaTime;
-                    meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
-                    gameObject.GetComponent<BoxCollider>().isTrigger = false;
-                }
-                break;
-            case "Dead":
-                gameManager.SetGameState("Dead");
-                break;
-
+            PlayerMove();
         }
+
+        staminaBar.fillAmount = staminaCurrentTime / staminaTime;//deberia hacerlo el gamemanager   
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -124,7 +74,7 @@ public class PlayerControler : MonoBehaviour
                     || other.gameObject.tag == "Axe") gameManager.SetGameState("Dead");
             }
         }
-        
+
 
     }
 
@@ -139,12 +89,52 @@ public class PlayerControler : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, Carriles[1].position, moveSpeed * Time.deltaTime);
         }
+        PlayerDissapear();
+
+    }
+    void PlayerDissapear()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //Stamina Managment
+            if (staminaCurrentTime > 0)
+            {
+                ds = true;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+
+            //Stamina Managment
+            if (staminaCurrentTime < staminaTime)
+            {
+                ds = false;
+            }
+        }
+
+        if (ds && staminaCurrentTime > 0)
+        {
+            gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            meshRenderer.GetComponent<Renderer>().material.color = Color.white;
+            staminaCurrentTime -= staminaSpend * Time.deltaTime;
+        }
+        else if (ds && staminaCurrentTime <= 0)
+        {
+            meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+            staminaCurrentTime = 0;
+            ds = false;
+        }
+        else if (!ds && staminaCurrentTime < staminaTime)
+        {
+            staminaCurrentTime += staminaRecoverSpeed * Time.deltaTime;
+            meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+            gameObject.GetComponent<BoxCollider>().isTrigger = false;
+        }
     }
 
     public void Restart()
     {
-        gameManager.RemoveFromList(gameObject);
-        gameManager.AddToList(gameObject);
+        ds = false;
         staminaCurrentTime = staminaTime;
         transform.position = initPosition;
     }
