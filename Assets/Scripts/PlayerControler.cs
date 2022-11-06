@@ -117,10 +117,6 @@ public class PlayerControler : MonoBehaviour
                         || other.gameObject.tag == "Axe") gameManager.SetGameState("Dead");
                 }
             }
-
-            
-
-
         }
 
         if (other.gameObject.tag == "PickUp")
@@ -179,18 +175,27 @@ public class PlayerControler : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                gameObject.GetComponent<BoxCollider>().isTrigger = true;
-                meshRenderer.GetComponent<Renderer>().material.color = Color.white;
+                
                 if (staminaCurrentTime > 0)
                 {
+                    gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                    meshRenderer.GetComponent<Renderer>().material.color = Color.white;
                     staminaCurrentTime -= staminaSpend * Time.deltaTime;
                     ds = true;
+
                 }
                 else
                 {
+                    gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                    meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+                    staminaCurrentTime += staminaRecoverSpeed * Time.deltaTime;
                     staminaCurrentTime = 0;
+                    ds = false  ;
+
                 }
-                
+
+
+
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {
