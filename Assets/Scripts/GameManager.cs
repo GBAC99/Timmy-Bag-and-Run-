@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public float actualGameSpeed;
     public string actualState;
-
+    
     public bool fastForward;
     public bool slowDown;
     public float slowTime;
@@ -98,6 +99,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 
     public void SetGameState(string state)
     {

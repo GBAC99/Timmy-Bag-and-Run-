@@ -88,7 +88,7 @@ public class PlayerControler : MonoBehaviour
             }
 
         }
-        
+
 
     }
 
@@ -117,12 +117,21 @@ public class PlayerControler : MonoBehaviour
                         || other.gameObject.tag == "Axe") gameManager.SetGameState("Dead");
                 }
             }
+
+            
+
+
         }
 
         if (other.gameObject.tag == "PickUp")
         {
             PickUp pickUp = other.gameObject.GetComponent<PickUp>();
             pickUp.TakePickUp();
+        }
+        if (other.gameObject.tag == "Meta")
+        {
+            Debug.Log("MAUJAUAJUJUAJ");
+            gameManager.LoadNextScene();
         }
     }
 
