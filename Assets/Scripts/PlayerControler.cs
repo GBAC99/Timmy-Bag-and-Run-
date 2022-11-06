@@ -47,6 +47,8 @@ public class PlayerControler : MonoBehaviour
             PlayerMove();
         }
 
+        if (staminaCurrentTime > staminaTime) staminaCurrentTime = staminaTime;
+
         staminaBar.fillAmount = staminaCurrentTime / staminaTime;//deberia hacerlo el gamemanager   
     }
 

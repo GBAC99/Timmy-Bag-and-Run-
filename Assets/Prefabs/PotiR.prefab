@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6675430365948331707}
   m_Layer: 0
   m_Name: PotiR
-  m_TagString: PotiR
+  m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557d05885991d064a8a49c1b28d190b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  meshRenderer: []
+  staminaPoints: 0
+  inmuneTime: 0
+  stopTime: 0
+  pType: 0

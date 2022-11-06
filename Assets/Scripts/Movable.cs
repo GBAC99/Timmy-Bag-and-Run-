@@ -63,6 +63,24 @@ public class Movable : MonoBehaviour
         transform.position = initialPosition;
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Renderer")
+        {
+            foreach (MeshRenderer m in meshRenderer)
+            {
+                if (!m.enabled)
+                {
+                    m.enabled = true;
+                }
+            }
+        }
+        if (other.gameObject.tag == "Destroyer")
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Renderer")

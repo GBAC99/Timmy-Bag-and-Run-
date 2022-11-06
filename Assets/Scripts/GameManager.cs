@@ -73,7 +73,6 @@ public class GameManager : MonoBehaviour
             SetGameState("Dead");
         }
 
-
         if (Input.GetKey(KeyCode.P))
         {
             actualGameSpeed = 10f;
