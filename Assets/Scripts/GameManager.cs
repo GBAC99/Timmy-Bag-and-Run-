@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
             case "Play":
                 actualGameSpeed = startGameSpeed;
                 player.SetState("Play");
+
                 break;
             case "Restart":
                 foreach (GameObject o in sceneObjects)
@@ -101,12 +102,18 @@ public class GameManager : MonoBehaviour
                         o.GetComponent<Movable>().Restart();
                     }
                 }
+
+                player.Restart();
+
                 mainDeadScreenUI.SetActive(false);
+                Time.timeScale = 1;
                 SetGameState("Play");
+
                 break;
             case "Dead":
                 actualGameSpeed = 0; //Pause all objects
                 mainDeadScreenUI.SetActive(true);
+                Time.timeScale = 0;
                 //player.SetState("Dead");
                 break;
         }
