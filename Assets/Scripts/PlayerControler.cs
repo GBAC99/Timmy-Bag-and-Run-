@@ -181,7 +181,14 @@ public class PlayerControler : MonoBehaviour
             {
                 gameObject.GetComponent<BoxCollider>().isTrigger = true;
                 meshRenderer.GetComponent<Renderer>().material.color = Color.white;
-                staminaCurrentTime -= staminaSpend * Time.deltaTime;
+                if (staminaCurrentTime > 0)
+                {
+                    staminaCurrentTime -= staminaSpend * Time.deltaTime;
+                }
+                else
+                {
+                    staminaCurrentTime = 0;
+                }
                 ds = true;
             }
             else if (Input.GetKeyUp(KeyCode.Space))
