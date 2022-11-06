@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour
     public float startGameSpeed;
     [HideInInspector]
     public float actualGameSpeed;
-
     public string actualState;
+
+    public bool fastForward;
 
     private static GameManager _instance;
 
@@ -64,6 +65,9 @@ public class GameManager : MonoBehaviour
 
         actualGameSpeed = startGameSpeed;
 
+        fastForward = false;
+
+
     }
 
     // Update is called once per frame
@@ -78,13 +82,17 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKey(KeyCode.P))
         {
+            actualGameSpeed = 10f;
+        fastForward = true;
 
         }
         else if (Input.GetKeyUp(KeyCode.P))
         {
+            fastForward = false;
 
+            actualGameSpeed = startGameSpeed;
         }
 
     }

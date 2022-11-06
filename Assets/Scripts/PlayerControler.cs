@@ -97,7 +97,7 @@ public class PlayerControler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameManager.actualState == "Play")
+        if (gameManager.actualState == "Play" && !gameManager.fastForward)
         {
             if (!ds)
             {
