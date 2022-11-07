@@ -1204,6 +1204,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1152721235}
     m_Modifications:
+    - target: {fileID: 1758924946935291173, guid: b271ad08567534c42a9f8766058a1759, type: 3}
+      propertyPath: slowTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758924946935291173, guid: b271ad08567534c42a9f8766058a1759, type: 3}
+      propertyPath: slowGameSpeed
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5702414672532530534, guid: b271ad08567534c42a9f8766058a1759, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3251,10 +3259,10 @@ Transform:
   - {fileID: 1650605916}
   - {fileID: 1386775561}
   - {fileID: 1833727169}
-  - {fileID: 296976746}
   - {fileID: 2055570428}
   - {fileID: 1068653995}
   - {fileID: 99629897}
+  - {fileID: 296976746}
   - {fileID: 179978238}
   - {fileID: 497970580}
   - {fileID: 641662585}
@@ -3844,6 +3852,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1152721235}
     m_Modifications:
+    - target: {fileID: 1421910226393410115, guid: 4dec01267d865de449f222d0ea2abd22, type: 3}
+      propertyPath: staminaPoints
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2347873288310530902, guid: 4dec01267d865de449f222d0ea2abd22, type: 3}
       propertyPath: m_Name
       value: PotiB
