@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     //Referencia al Canvas
     public GameObject mainCanvasUI;
     public GameObject mainDeadScreenUI;
-    
+
+    public TutorialControler tutorialControler;
 
     //Referencia directa al Player
     public PlayerControler player;

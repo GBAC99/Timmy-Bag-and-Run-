@@ -126,9 +126,16 @@ public class PlayerControler : MonoBehaviour
         }
         if (other.gameObject.tag == "Meta")
         {
-            Debug.Log("MAUJAUAJUJUAJ");
             gameManager.LoadNextScene();
         }
+
+
+        if (other.gameObject.tag == "Tutorial")
+        {
+            gameManager.tutorialControler.SetTutorialUP();
+        }
+
+
     }
 
     public void SetPlayerInvencible()
