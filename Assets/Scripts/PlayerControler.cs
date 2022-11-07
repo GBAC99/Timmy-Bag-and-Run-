@@ -7,7 +7,7 @@ public class PlayerControler : MonoBehaviour
 {
     GameManager gameManager;
 
-    public GameObject meshRenderer;
+    public Material meshRenderer;
 
     public Image staminaBar;
     public float staminaTime;
@@ -75,14 +75,14 @@ public class PlayerControler : MonoBehaviour
 
         if (invencible)
         {
-            meshRenderer.GetComponent<Renderer>().material.color = Color.red;
+            meshRenderer.color = Color.red;
 
             invencibleCurrentTime += invencibleTimeSpend * Time.deltaTime;
             Debug.Log(invencibleCurrentTime);
             if (invencibleCurrentTime >= invencibleTime)
             {
                 invencibleCurrentTime = 0;
-                meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+                meshRenderer.color = Color.gray;
                 invencible = false;
 
             }
@@ -157,13 +157,13 @@ public class PlayerControler : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 gameObject.GetComponent<BoxCollider>().isTrigger = true;
-                meshRenderer.GetComponent<Renderer>().material.color = Color.white;
+                meshRenderer.color = Color.white;
                 staminaCurrentTimeExtra -= staminaSpendExtra * Time.deltaTime;
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {
                 gameObject.GetComponent<BoxCollider>().isTrigger = false;
-                meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+                meshRenderer.color = Color.gray;
             }
 
             if (staminaCurrentTimeExtra <= 0)
@@ -179,7 +179,7 @@ public class PlayerControler : MonoBehaviour
                 if (staminaCurrentTime > 0)
                 {
                     gameObject.GetComponent<BoxCollider>().isTrigger = true;
-                    meshRenderer.GetComponent<Renderer>().material.color = Color.white;
+                    meshRenderer.color = Color.white;
                     staminaCurrentTime -= staminaSpend * Time.deltaTime;
                     ds = true;
 
@@ -187,7 +187,7 @@ public class PlayerControler : MonoBehaviour
                 else
                 {
                     gameObject.GetComponent<BoxCollider>().isTrigger = false;
-                    meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+                    meshRenderer.color = Color.gray;
                     staminaCurrentTime += staminaRecoverSpeed * Time.deltaTime;
                     staminaCurrentTime = 0;
                     ds = false  ;
@@ -204,7 +204,7 @@ public class PlayerControler : MonoBehaviour
             else if (!ds && staminaCurrentTime < staminaTime)
             {
                 gameObject.GetComponent<BoxCollider>().isTrigger = false;
-                meshRenderer.GetComponent<Renderer>().material.color = Color.gray;
+                meshRenderer.color = Color.gray;
                 staminaCurrentTime += staminaRecoverSpeed * Time.deltaTime;
             }
         }
