@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.019296743, g: 0, b: 0.047169805, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 1
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 8414435310760469063}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -1525,6 +1525,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 0
+--- !u!84 &416079915
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'Aura Spot Light : Shadow Map Render Texture'
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 256
+  m_Height: 256
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 52
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &421006596 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5216297733814945993, guid: b2ac498a9e8a22640a6eee86937b295b, type: 3}
@@ -8525,6 +8561,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b0b141fefee8004baa21d3a0a5e93a1, type: 3}
+--- !u!114 &1910566876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8334a49e76cafef4da22976db1613959, type: 3}
+  m_Name: Default Aura Quality Settings
+  m_EditorClassIdentifier: 
+  displayVolumetricLightingBuffer: 0
+  frustumGridResolution: {x: 160, y: 88, z: 128}
+  enableAutomaticStereoResizing: 1
+  farClipPlaneDistance: 128
+  depthBiasCoefficient: 0.35
+  enableVolumes: 1
+  enableVolumesTexture2DMask: 1
+  enableVolumesTexture3DMask: 1
+  enableVolumesNoiseMask: 1
+  enableAmbientLighting: 1
+  enableDirectionalLights: 1
+  enableDirectionalLightsShadows: 1
+  enableSpotLights: 1
+  enableSpotLightsShadows: 1
+  enablePointLights: 1
+  enablePointLightsShadows: 1
+  enableLightsCookies: 1
+  enableDithering: 1
+  texture3DFiltering: 1
+  EXPERIMENTAL_enableDenoisingFilter: 0
+  EXPERIMENTAL_denoisingFilterRange: 0
+  EXPERIMENTAL_enableBlurFilter: 0
+  EXPERIMENTAL_blurFilterRange: 0
+  EXPERIMENTAL_blurFilterType: 0
+  EXPERIMENTAL_blurFilterGaussianDeviation: 0.0025
+  enableTemporalReprojection: 1
+  temporalReprojectionFactor: 0.95
+  enableOcclusionCulling: 1
+  debugOcclusionCulling: 0
+  occlusionCullingAccuracy: 0
+  enableLightProbes: 0
 --- !u!1001 &1911702271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9271,14 +9350,38 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5421051163459945420, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 13a081b61c8fc6c49a590298741924fb, type: 2}
     - target: {fileID: 5421051164032171913, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
       propertyPath: m_LocalPosition.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5421051164229582036, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 13a081b61c8fc6c49a590298741924fb, type: 2}
+    - target: {fileID: 5421051164329655081, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 13a081b61c8fc6c49a590298741924fb, type: 2}
     - target: {fileID: 5421051164775101533, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
       propertyPath: tutorialControler
       value: 
       objectReference: {fileID: 2114513660}
+    - target: {fileID: 5421051164852664187, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 13a081b61c8fc6c49a590298741924fb, type: 2}
+    - target: {fileID: 5972000313873729392, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972000313873729405, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393224231243204302, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
       propertyPath: m_Name
       value: SceneStructure
@@ -9332,10 +9435,5 @@ PrefabInstance:
 --- !u!224 &4610952758969696240 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4627109704832081843, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
-  m_PrefabInstance: {fileID: 4610952758969696239}
-  m_PrefabAsset: {fileID: 0}
---- !u!108 &8414435310760469063 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 5421051164229590440, guid: 72058298e3954e746b5cf3ec5d1d8b51, type: 3}
   m_PrefabInstance: {fileID: 4610952758969696239}
   m_PrefabAsset: {fileID: 0}
