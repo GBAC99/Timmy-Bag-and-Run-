@@ -4067,6 +4067,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ALL_DEVSCENE
       objectReference: {fileID: 0}
+    - target: {fileID: 8414435310576440145, guid: ca25ffa4d1e89cb468ccc511d90ca533, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9fe17934bc0963e4db954c8d2aaf12a1, type: 2}
+    - target: {fileID: 8414435310877178744, guid: ca25ffa4d1e89cb468ccc511d90ca533, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 795636e8bbf0dc94dac33659431b4c2a, type: 2}
+    - target: {fileID: 8414435310877178750, guid: ca25ffa4d1e89cb468ccc511d90ca533, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15.392871
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414435310877178750, guid: ca25ffa4d1e89cb468ccc511d90ca533, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.1962
+      objectReference: {fileID: 0}
     - target: {fileID: 9208646106193347573, guid: ca25ffa4d1e89cb468ccc511d90ca533, type: 3}
       propertyPath: m_text
       value: 'Retry
