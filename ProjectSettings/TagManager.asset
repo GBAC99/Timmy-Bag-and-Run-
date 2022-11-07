@@ -15,6 +15,7 @@ TagManager:
   - Destroyer
   - PickUp
   - Meta
+  - Tutorial
   layers:
   - Default
   - TransparentFX
