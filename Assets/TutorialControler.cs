@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialControler : MonoBehaviour
 {
     
-    public GameObject canvasTutorial;
+    public GameObject[] canvasTutorial;   
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +19,12 @@ public class TutorialControler : MonoBehaviour
         
     }
 
-    public void SetTutorialUP()
+    public void SetTutorialUP(int num)
     {
-        canvasTutorial.SetActive(true);
+        canvasTutorial[num-1].SetActive(true);
     }
-
+    public void SetTutorialOFF(int num)
+    {
+        canvasTutorial[num-1].SetActive(false);
+    }
 }

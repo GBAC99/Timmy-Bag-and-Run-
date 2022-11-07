@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3239058200464947349}
   - component: {fileID: 3433256923909069482}
   - component: {fileID: 2965394804572867041}
+  - component: {fileID: 6247520910008205996}
+  - component: {fileID: 6785359976671070401}
+  - component: {fileID: 3503577182628599312}
   m_Layer: 0
   m_Name: vela
   m_TagString: Untagged
@@ -83,3 +86,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6247520910008205996
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217684048900178456}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 124
+  m_CollisionDetection: 0
+--- !u!114 &6785359976671070401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217684048900178456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb70b534e72a6654991e9dd77c3a6c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7
+  meshRenderer: []
+--- !u!65 &3503577182628599312
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217684048900178456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42779434, y: 0.4068567, z: 1.1088634}
+  m_Center: {x: 0.3101905, y: 0.3760677, z: -0.116135195}

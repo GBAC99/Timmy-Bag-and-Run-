@@ -132,10 +132,19 @@ public class PlayerControler : MonoBehaviour
 
         if (other.gameObject.tag == "Tutorial")
         {
-            gameManager.tutorialControler.SetTutorialUP();
+            Debug.Log("tuto");
+            gameManager.tutorialControler.SetTutorialUP(other.gameObject.GetComponent<TutorialVolume>().num);
         }
 
 
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Tutorial")
+        {
+            gameManager.tutorialControler.SetTutorialOFF(other.gameObject.GetComponent<TutorialVolume>().num);
+                }
     }
 
     public void SetPlayerInvencible()

@@ -13,6 +13,8 @@ public class Movable : MonoBehaviour
     GameObject _thisGO;
     public MeshRenderer[] meshRenderer;
 
+    public bool soyunobjeto;
+
     public Movable()
     {
         speed = 1;
@@ -93,7 +95,7 @@ public class Movable : MonoBehaviour
                 }
             }
         }
-        if (other.gameObject.tag == "Destroyer")
+        if (other.gameObject.tag == "Destroyer" && !soyunobjeto)
         {
             gameObject.SetActive(false);
         }

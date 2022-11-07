@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 1630592327047119766}
   - component: {fileID: 3953446116129342734}
   - component: {fileID: 4544975153151070538}
+  - component: {fileID: 796207926085233454}
+  - component: {fileID: 6785417711605008811}
+  - component: {fileID: 2833993610236590689}
   m_Layer: 0
   m_Name: barret
   m_TagString: Untagged
@@ -81,3 +84,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &796207926085233454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701497387228612525}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.0300875, y: 4.783898, z: 3.5049803}
+  m_Center: {x: -1.9356065, y: -3.1341233, z: 1.093657}
+--- !u!114 &6785417711605008811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701497387228612525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb70b534e72a6654991e9dd77c3a6c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7
+  meshRenderer: []
+--- !u!54 &2833993610236590689
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701497387228612525}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 124
+  m_CollisionDetection: 0
