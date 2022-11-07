@@ -25,7 +25,7 @@ public class Ghost : Movable
     }
 
 
-    private void OnTriggerStay(Collider other)
+        private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Renderer")
         {
