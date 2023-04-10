@@ -82,21 +82,24 @@ public class GameManager : MonoBehaviour
             SetGameState("Dead");
         }
 
-        if (Input.GetKey(KeyCode.P))
+        /* if (Input.GetKey(KeyCode.P))
+         {
+             actualGameSpeed = 10f;
+         fastForward = true;
+
+         }
+         else if (Input.GetKeyUp(KeyCode.P))
+         {
+             fastForward = false;
+
+             actualGameSpeed = startGameSpeed;
+         }*/
+
+
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            actualGameSpeed = 10f;
-        fastForward = true;
-
+            Application.Quit();
         }
-        else if (Input.GetKeyUp(KeyCode.P))
-        {
-            fastForward = false;
-
-            actualGameSpeed = startGameSpeed;
-        }
-
-        
-
 
     }
 
