@@ -61,8 +61,7 @@ public class PlayerControler : MonoBehaviour
         {
             PlayerMove();
         }
-
-        // if (staminaCurrentTime > staminaTime) staminaCurrentTime = staminaTime;
+         
         if (extraStamina)
         {
             staminaBarExtra.fillAmount = staminaCurrentTimeExtra / staminaTimeExtra;
@@ -70,7 +69,7 @@ public class PlayerControler : MonoBehaviour
         else
         {
             staminaBarExtra.fillAmount = 0;
-            staminaBar.fillAmount = staminaCurrentTime / staminaTime;//deberia hacerlo el gamemanager   
+            staminaBar.fillAmount = staminaCurrentTime / staminaTime;  
         }
 
         if (invencible)
@@ -91,11 +90,7 @@ public class PlayerControler : MonoBehaviour
 
 
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-
-    }
+     
 
     private void OnTriggerEnter(Collider other)
     {
